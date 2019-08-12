@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Tudo sobre Google Glass </title>
+    <title>Linha de Produtos </title>
     <link rel="stylesheet" href="_css/estilo.css" />
     <link rel="stylesheet" href="_css/form.css" />
 </head>
@@ -59,18 +59,18 @@
                     <fieldset id="endereco">
                         <legend>Cadastro de Produto </legend>
                         <p>
-                        <label for="cEst">Garrafa: </label>
-                        <select name="tEst" id="cEst">
-                            <optgroup label="Garrafa 500ml">
-                                <option value="GD">Garrafa Dupipe</option>
-                                <option selected value="GP">Garrafa Padrão</option>
-                            </optgroup>
-                            <optgroup label="Garrafa 5L">
-                                <option value="GP">Garrafão</option>
-                                <option value="GB">Garrafão Balde</option>
-                            </optgroup>
-                        </select>
-                    </p>
+                            <label for="cEst">Garrafa: </label>
+                            <select name="tEst" id="cEst">
+                                <optgroup label="Garrafa 500ml">
+                                    <option value="GD">Garrafa Dupipe</option>
+                                    <option selected value="GP">Garrafa Padrão</option>
+                                </optgroup>
+                                <optgroup label="Garrafa 5L">
+                                    <option value="GP">Garrafão</option>
+                                    <option value="GB">Garrafão Balde</option>
+                                </optgroup>
+                            </select>
+                        </p>
                         <p>
                             <label for="cEst">Cachaça: </label>
                             <select name="tEst" id="cEst">
@@ -84,9 +84,46 @@
                                 </optgroup>
                             </select>
                         </p>
+                        <p><label for="cNome">Nome do produto: <input type="text" name="tNome" id="cNome" size="20"
+                                    maxlength="30" placeholder="Produto"></label></p>
+                        <p><label for="cNome">Descrição produto: <input type="text" name="tNome" id="cNome" size="20"
+                                    maxlength="30" placeholder="Descrição"></label></p>
+                        <p><label for="cNasc">Data de produção: <input type="date" name="tNasc" id="cNasc"></label>
+                        </p>
+                    </fieldset>
+                    <fieldset id="listaProduto">
+                        <legend>Lista de Produto </legend>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Tabela de produto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">Cachaça Branca</td>
+                                </tr>
+                                <tr>
+                                    <td>Cachaça com sabor e caracteristicas da cana</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Cachaça Amarela</td>
+                                </tr>
+                                <tr>
+                                    <td>Cachaça com sabor e caracteristicas do Barril</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Licor Ameixa</td>
+                                </tr>
+                                <tr>
+                                    <td>Licor com essência natural de Ameixa</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </fieldset>
                     <input type="image" name="tEnviar" src="_imagens/btn_inserir.png">
                     <input type="image" name="tExcluir" src="_imagens/btn_excluir.png">
+                    <input type="image" name="tAlterar" src="_imagens/btn_alterar.png">
                 </form>
             </article>
         </section>
