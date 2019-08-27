@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="_css/estilo.css" />
+    <link rel="stylesheet" href="_css/form.css" />
+</head>
+<script type="text/javascript" language="javascript" src="_javascript/funcoes.js"></script>
+<script>
+    function calc_total() {
+        let pdt = document.getElementById('cProd').value;
+        let qtd = parseInt(document.getElementById('cQtd').value);
+        if (pdt === 'CP') {
+            tot = qtd * 15;
+        } else {
+            tot = qtd * 80;
+        }
+        document.getElementById('cTot').value = tot;
+    }
+</script>
+
+<body>
+    <div id="interface">
+
+        <header id="cabecalho">
+            <hgroup>
+                <!-- Agrupa os títulos, mas não faz diferença, mais pra organizar -->
+                <h1>Cachaça Dupipe</h1>
+                <h2>Cachaça artesanal feito de Cana</h2>
+            </hgroup>
+
+            <img id="icone" src="_imagens/icone-pagamento.png" />
+
+            <nav id="menu">
+                <ul type="disc">
+                    <li onmouseover="mudaFoto('_imagens/home.png')"
+                        onmouseout="mudaFoto('_imagens/icone-pagamento.png')">
+                        <a href="/">Home</a>
+                    </li> <!-- li item -->
+                    <li onmouseover="mudaFoto('_imagens/portifolio.png')"
+                        onmouseout="mudaFoto('_imagens/icone-pagamento.png')">
+                        <a href="produto">Produtos</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/fotos.png')"
+                        onmouseout="mudaFoto('_imagens/icone-pagamento.png')">
+                        <a href="fotos">Fotos</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/icone-mensagem.png')"
+                        onmouseout="mudaFoto('_imagens/icone-pagamento.png')">
+                        <a href="cliente">Cliente</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/icone-pagamento.png')"
+                        onmouseout="mudaFoto('_imagens/icone-pagamento.png')">
+                        <a href="pedido">Pedido</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section id="corpo-full">
+            <article id="noticia-principal">
+                <header id="cabecalho-artigo">
+                    <hgroup>
+                        <h3>Pedido > Produto</h3>
+                        <h1>Formulário de Pedidos</h1>
+                        <h2>por Zeus Schmitz</h2>
+                        <h3 class="direita">Atualizado em 08/Agosto/2019</h3>
+                    </hgroup>
+                </header>
+                <form method="post" id="fContato" action="mailto:zeus.schmitz2@gmail.com" oninput="calc_total();">
+                    <fieldset id="mensagem">
+                        <legend> Mensagem do Usuário </legend>
+                        <p>
+                            <label for="cUrg">Grau de Urgência: </label>
+                            Min<input type="range" name="tUrg" id="cUrg" min="0" max="10" step="2">Máx
+                        </p>
+                        <p>
+                            <label for="cMsg">Mensagem: </label>
+                            <textarea name="tMsg" id="cMsg" cols="35" rows="5"
+                                placeholder="Deixe aqui sua mensagem"></textarea>
+                        </p>
+                    </fieldset>
+                    <fieldset id="pedido">
+                        <legend> Quero uma Cachaça Dupipe</legend>
+                        <p>
+                            <input type="checkbox" name="tPed" id="cPed">
+                            <label for="cPed">Gostaria de receber aviso de promoções</label>
+                        </p>
+                        <p>
+                            <label for="cEst">Cachaça: </label>
+                            <select name="tEst" id="cEst">
+                                <optgroup label="Garrafa 500ml">
+                                    <option value="CP" id="cProd">Cachaça Amarela 500ml</option>
+                                    <option value="CP" id="cProd" >Cachaça Branca 500ml</option>
+                                    <option value="CP" id="cProd" >Licor Ameixa 500ml</option>
+                                </optgroup>
+                                <optgroup label="Garrafa 5L">
+                                    <option value="CG" id="cProd" >Cachaça Amarela 5L</option>
+                                    <option value="CG" id="cProd" >Cachaça Branca 5L</option>
+                                </optgroup>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="cQtd">Quantidade: </label>
+                            <input type="number" name="tQtd" id="cQtd" min="0" max="5" value="0">
+                        </p>
+                        <p>
+                            <label for="cTot">Preço Total: R$</label>
+                            <input type="text" name="tTot" id="cTot" placeholder="Total a pagar" readonly>
+                        </p>
+                    </fieldset>
+                    <input type="image" name="tEnviar" src="_imagens/btn_enviar.png">
+                </form>
+            </article>
+        </section>
+
+        <footer id="rodape">
+            <p>Copyright &copy; 2019 - by Zeus Schmitz
+                <a href="http://facebook.com/zeus.schmitz"> Facebook </a></p>
+        </footer>
+    </div>
+</body>
+
+</html>

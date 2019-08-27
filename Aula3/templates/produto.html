@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Linha de Produtos </title>
+    <link rel="stylesheet" href="_css/estilo.css" />
+    <link rel="stylesheet" href="_css/form.css" />
+</head>
+<script type="text/javascript" language="javascript" src="_javascript/funcoes.js"></script>
+
+<body>
+    {% for cadastro_prod in listaProduto : %}
+    {{cadastro_prod.garrafa}}<br>
+    {%endfor%}
+    <div id="interface">
+
+        <header id="cabecalho">
+            <hgroup>
+                <!-- Agrupa os títulos, mas não faz diferença, mais pra organizar -->
+                <h1>Cachaça Dupipe</h1>
+                <h2>Cachaça artesanal feito de Cana</h2>
+            </hgroup>
+
+            <img id="icone" src="_imagens/portifolio.png" />
+
+            <nav id="menu">
+                <ul type="disc">
+                    <li onmouseover="mudaFoto('_imagens/home.png')" onmouseout="mudaFoto('_imagens/portifolio.png')">
+                        <a href="/">Home</a>
+                    </li> <!-- li item -->
+                    <li onmouseover="mudaFoto('_imagens/portifolio.png')"
+                        onmouseout="mudaFoto('_imagens/portifolio.png')">
+                        <a href="produto">Produtos</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/fotos.png')" onmouseout="mudaFoto('_imagens/portifolio.png')">
+                        <a href="fotos">Fotos</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/icone-mensagem.png')"
+                        onmouseout="mudaFoto('_imagens/portifolio.png')">
+                        <a href="cliente">Cliente</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/icone-pagamento.png')"
+                        onmouseout="mudaFoto('_imagens/portifolio.png')">
+                        <a href="pedido">Pedido</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section id="corpo-full">
+            <article id="noticia-principal">
+                <header id="cabecalho-artigo">
+                    <hgroup>
+                        <h3>Cadastro > Clientes</h3>
+                        <h1>Cadastro de Clientes</h1>
+                        <h2>por Zeus Schmitz</h2>
+                        <h3 class="direita">Atualizado em 08/Agosto/2019</h3>
+                    </hgroup>
+                </header>
+                <form method="post" id="fContato" action="/inserirProduto" oninput="calc_total();">
+                    <fieldset id="endereco">
+                        <legend>Cadastro de Produto </legend>
+                        <p>
+                            <label for="cEst">Garrafa: </label>
+                            <select name="tGarrafa" id="cEst">
+                                <optgroup label="Garrafa 500ml">
+                                    <option value="GD">Garrafa Dupipe</option>
+                                    <option selected value="GP">Garrafa Padrão</option>
+                                </optgroup>
+                                <optgroup label="Garrafa 5L">
+                                    <option value="GP">Garrafão</option>
+                                    <option value="GB">Garrafão Balde</option>
+                                </optgroup>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="cEst">Cachaça: </label>
+                            <select name="tCachaca" id="cEst">
+                                <optgroup label="Cachaça">
+                                    <option value="GD">Cachaça Branca</option>
+                                    <option selected value="GP">Cachaça Amarela</option>
+                                </optgroup>
+                                <optgroup label="Licor">
+                                    <option value="LN">Natural</option>
+                                    <option value="LE">Essência</option>
+                                </optgroup>
+                            </select>
+                        </p>
+                        <p><label for="cNome">Nome do produto: <input type="text" name="tNome" id="cNome" size="20"
+                                    maxlength="30" placeholder="Produto"></label></p>
+                        <p><label for="cNome">Descrição produto: <input type="text" name="tDesc" id="cNome" size="20"
+                                    maxlength="30" placeholder="Descrição"></label></p>
+                        <p><label for="cNasc">Data de produção: <input type="date" name="tDtProd" id="cNasc"></label>
+                        </p>
+                    </fieldset>
+                    <fieldset id="listaProduto">
+                        <legend>Lista de Produto </legend>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Tabela de produto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">Cachaça Branca</td>
+                                </tr>
+                                <tr>
+                                    <td>Cachaça com sabor e caracteristicas da cana</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Cachaça Amarela</td>
+                                </tr>
+                                <tr>
+                                    <td>Cachaça com sabor e caracteristicas do Barril</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Licor Ameixa</td>
+                                </tr>
+                                <tr>
+                                    <td>Licor com essência natural de Ameixa</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                    <button type="submit">Enviar</button>
+                    <input type="image" name="tEnviar" src="_imagens/btn_inserir.png">
+                    <input type="image" name="tExcluir" src="_imagens/btn_excluir.png">
+                    <input type="image" name="tAlterar" src="_imagens/btn_alterar.png">
+                </form>
+            </article>
+        </section>
+        <footer id="rodape">
+            <p>Copyright &copy; 2019 - by Zeus Schmitz
+                <a href="http://facebook.com/zeus.schmitz"> Facebook </a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
