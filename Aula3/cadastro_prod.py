@@ -1,7 +1,9 @@
-class cadastro_prod():
-    def __init__(self, garrafa="",cachaca="",nomeProd="",descProd="",dataProd=""):
+class Produto():
+    def __init__(self, garrafa="",nomeProd="",descProd=""):
         self.garrafa = garrafa
-        self.cachaca = cachaca
         self.nomeProd = nomeProd
         self.descProd = descProd
-        self.dataProd = dataProd
+
+if __name__ == "__main__":
+    pord = Produto("Garrafa Padrão", "Licor", "Licor natural")
+    print(pord.garrafa)

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from cadastro_prod import cadastro_prod
+from cadastro_prod import Produto
 app=Flask(__name__, static_url_path='',static_folder='templates')
 
 listaProduto = []
@@ -28,12 +28,18 @@ def listarProdutos():
 @app.route("/inserirProduto", methods=['post'])
 def produto():
     garrafa = request.form["tGarrafa"]
-    cachaca = request.form["tCachaca"]
     nomeProd = request.form["tNome"]
     descProd = request.form["tDesc"]
-    dataProd = request.form["tDtProd"]
-    produto = cadastro_prod(garrafa, cachaca, nomeProd, descProd, dataProd)
+    produto = Produto(garrafa, nomeProd, descProd)
     listaProduto.append(produto)
     return redirect("/listarProdutos")
 
-app.run()#debug=True)
+@app.route("/excluirProduto")
+def excluirProduto():
+    nomProdAexcluir = request.args.get("prodExcluir")
+    for produtoAexcluir in listaProduto:
+        if nomProdAexcluir == produtoAexcluir.nomeProd:
+           listaProduto.remove(produtoAexcluir)
+    return redirect("/listarProdutos") 
+
+app.run(debug=True)
