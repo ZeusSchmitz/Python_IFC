@@ -85,9 +85,9 @@
                             </select>-->
                         </p>
                         <p><label for="cNome">Nome do produto: <input type="text" name="tNome" id="cNome" size="20"
-                                    maxlength="30" placeholder="Produto"></label></p>
+                                    maxlength="30" placeholder="Produto" {% if op == 'alterar'%} value="{{produtoAalterar.nomeProd}}" {% endif %}></label></p>
                         <p><label for="cNome">Descrição produto: <input type="text" name="tDesc" id="cNome" size="20"
-                                    maxlength="30" placeholder="Descrição"></label></p>
+                                    maxlength="30" placeholder="Descrição" {% if op == 'alterar'%} value="{{produtoAalterar.descProd}}" {% endif %}></label></p>
                         </p>
                     </fieldset>
                     <fieldset id="listaProduto">
@@ -107,6 +107,7 @@
                                     <td>{{cadastro_prod.descProd}}</td>
                                     <td>{{cadastro_prod.garrafa}}</td>
                                     <td><a href="/excluirProduto?prodExcluir={{cadastro_prod.nomeProd}}">Excluir</a></td>
+                                    <td><a href="/alterarProduto?produtoAlterar={{cadastro_prod.nomeProd}}">Alterar</a></td>
                                 </tr>
                                 {% endfor %}
 <!--                                <tr>

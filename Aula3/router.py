@@ -23,7 +23,7 @@ def pedido():
 @app.route("/listarProdutos")
 def listarProdutos():
 
-    return render_template('produto.html', listaProduto = listaProduto)
+    return render_template('produto.html', listaProduto = listaProduto, op = 'inserir')
 
 @app.route("/inserirProduto", methods=['post'])
 def produto():
@@ -41,5 +41,14 @@ def excluirProduto():
         if nomProdAexcluir == produtoAexcluir.nomeProd:
            listaProduto.remove(produtoAexcluir)
     return redirect("/listarProdutos") 
+
+@app.route("/alterarProduto")
+def alterarProduto():
+    nomProdAalterar = request.args.get("produtoAlterar")
+    for produtoAalterar in listaProduto:
+        if nomProdAalterar == produtoAalterar.nomeProd:
+           listaProduto.remove(produtoAalterar)
+           return render_template('produto.html',produtoAalterar = produtoAalterar, op = 'alterar', listaProduto = listaProduto)
+    return redirect("/listarProdutos")   
 
 app.run(debug=True)
