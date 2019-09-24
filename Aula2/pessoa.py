@@ -22,4 +22,7 @@ for i, livro in enumerate(livros):
         print(i, livro)
 
 for i, livro in enumerate(livros):
-    print('O livro ' + livro + ' esta na posicao:', i)        
+    print('O livro ' + livro + ' esta na posicao:', i)
+
+for livro in livros:
+    print('O livro ' + livro + ' esta na posicao:')
