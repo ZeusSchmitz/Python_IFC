@@ -6,7 +6,7 @@ arq = 'pedido.db'
 db = SqliteDatabase(arq)
 
 class Pedido(Model):
-    produto = ForeignKeyField(Produto)
+    produto = ManyToManyField(Produto)
     cliente = ForeignKeyField(Cliente)
     qtdProd = CharField()
 
