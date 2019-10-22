@@ -29,8 +29,9 @@ if __name__ == '__main__':
     db.create_tables([Pessoa])  # solicitar a criação das tabelas
 
     # criar uma pessoa e mostrar suas informações
-    jo = Pessoa.create(nome="Joao", sobrenome='Silva')
-    ze = Pessoa.create(nome='Zec', sobrenome='Ximitz')
+    tel = Telefone.create(ddd= '47', numero= '458774269')
+    end = Endereco.create_table(rua= 'Bonifacio', numero= '7999', logradouro= 'casa', cidade= 'Gaspar', estado= 'SC')
+    jo = Pessoa.create(nome="Joao", sobrenome='Silva', dtNasc= '03/09/1987', sexo= 'M', senha= '1234', email= 'oh_zec', end=end)
+    jo.tel.add(tel)
     print(jo)
-    print(ze)
 
