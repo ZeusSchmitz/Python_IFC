@@ -1,4 +1,5 @@
 from peewee import *
+import os
 
 arq = 'endereco.db'
 db = SqliteDatabase(arq)
@@ -14,9 +15,14 @@ class Endereco(Model):
         database = db
     
     def __str__(self):
-        return self.rua + '' + self.logradouro + '' + self.cidade + '' + self.estado
+        return 'Rua: ' + self.rua + ' Logradouro: ' + self.logradouro + ' Cidade: ' + self.cidade + ' Estado: ' + self.estado
 
 if __name__ == '__main__':
+    if os.path.exists(arq):
+        os.remove(arq)
 
     db.connect()  # conectar-se ao banco de dados
     db.create_tables([Endereco])  # solicitar a criação das tabelas
+
+    end = Endereco.create(rua= 'Bonifacio', numero= '7999', logradouro= 'Casa', cidade= 'Gaspar', estado= 'SC')
+    print(end)
