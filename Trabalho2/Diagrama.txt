@@ -1,0 +1,80 @@
+@startuml
+
+title Trabalho02 - Diagrama de Classes
+
+class Cliente {
+    -Telefone telefone
+    -Endereco endereco
+}
+
+class Pedido {
+    -Produto produtos
+    -Cliente cliente
+    -String qtdProd
+}
+
+class Entrega {
+    -Pedido pedido
+    -String numRast
+}
+
+class Endereco {
+    -String rua
+    -int numero
+    -String logradouro
+    -String bairro
+    -String cidade
+    -String estado
+}
+
+abstract class Pessoa {
+    -String nome
+    -String sobrenome
+    -Date   dtNasc
+    -String sexo
+    -String Senha
+    -String email
+    -Telefone telefone
+    -Endereco endereco
+}
+
+class Fornecedor {
+    -String nomeFant
+    -String produto
+    -Telefone telefone
+    -Endereco endereco
+}
+
+class Telefone{
+    -String ddd
+    -Int numero
+}
+
+class Funcionario{
+    -String setor
+    -Telefone telefone
+    -Endereco endereco
+}
+
+class Produto{
+    -String garrafa
+    -String descProduto
+    -String nomProduto
+}
+
+class Reclame{
+    -Pedido pedido
+    -String motivo
+    -Date   dtRec
+}
+Pessoa <|-- Cliente
+Pessoa <|-- Funcionario
+Pessoa <|-- Fornecedor
+Pessoa o-- Endereco
+Reclame *-- Pedido
+Pedido o-- Produto
+Pedido *-- Cliente
+Telefone *-- Pessoa
+Entrega *-- Pedido
+
+@enduml
