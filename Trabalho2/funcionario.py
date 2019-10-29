@@ -1,18 +1,16 @@
 from peewee import *
 from pessoa import Pessoa
+from endereco import Endereco
+from telefone import Telefone
+from baseModel import *
 
-arq = 'funcionario.db'
-db = SqliteDatabase(arq)
-
-class Funcionario(Model):
-    func = ForeignKeyField(Pessoa)
+class Funcionario(Pessoa):
     setor = CharField()
+    telefone = ForeignKeyField(Telefone)
+    endereco = ForeignKeyField(Endereco)
 
-    class Meta:
-        database = db
-    
     def __str__(self):
-        return self.func + '' + self.setor
+        return self.setor
 
 if __name__ == '__main__':
 

@@ -2,18 +2,13 @@ from peewee import *
 from pessoa import Pessoa
 from endereco import Endereco
 from telefone import Telefone
+from baseModel import *
 import os
-
-arq = 'cliente.db'
-db = SqliteDatabase(arq)
 
 class Cliente(Pessoa):
     telefone = ForeignKeyField(Telefone)
     endereco = ForeignKeyField(Endereco)
 
-    class Meta:
-        database = db
-    
     def __str__(self):
         return super().__str__()
 

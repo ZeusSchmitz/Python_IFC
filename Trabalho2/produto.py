@@ -1,16 +1,11 @@
 from peewee import *
+from baseModel import *
 
-arq = 'produto.db'
-db = SqliteDatabase(arq)
-
-class Produto(Model):
+class Produto(BaseModel):
     garrafa = CharField()
     nomProduto = CharField()
     descProduto = CharField()
 
-    class Meta:
-        database = db
-    
     def __str__(self):
         return self.garrafa + '' + self.nomProduto + '' + self.descProduto
 

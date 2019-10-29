@@ -14,7 +14,7 @@ class Pessoa(Model):
     sexo = CharField()
     senha = CharField()
     email = CharField()
-    telefone = ForeignKeyField(Telefone)
+    telefone = ManyToManyField(Telefone)
     endereco = ForeignKeyField(Endereco)
 
     class Meta:
