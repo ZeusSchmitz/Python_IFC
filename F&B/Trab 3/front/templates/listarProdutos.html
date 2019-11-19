@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listagem de Produtos</title>
+</head>
+
+<body>
+    <a href=/incluirProduto>Incluir</a> |
+    {% for produto in listaProduto: %} {{ produto.garrafa }} | {{ produto.nomProduto }} | {{ produto.descProduto }}
+    <a href=/excluir_pessoa?id={{ produto.id }}>Excluir</a>
+    <a href=/form_alterar_pessoa?id={{ produto.id }}>Alterar</a><br> 
+    {% endfor %}
+    <br>
+</body>
+
+</html>
