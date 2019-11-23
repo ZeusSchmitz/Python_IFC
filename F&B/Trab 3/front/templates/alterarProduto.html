@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulário de edição de dados do produto</title>
+</head>
+
+<body>
+    <h1>Edição de dados de produto</h1>
+    <form action=/alterarProduto method=post>
+        Garrafa: <input type=text name=garrafa value="{{produto.garrafa}}"> <br> 
+        Nome: <textarea name=nomProd>{{produto.nomProduto}}</textarea> <br> 
+        Descrição: <input type=text name=descProd value="{{produto.descProduto}}">
+        <input type=submit value=Alterar>
+        <input type=hidden name=id value="{{produto.id}}">
+    </form>
+</body>
+
+</html>

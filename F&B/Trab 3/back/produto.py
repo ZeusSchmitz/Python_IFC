@@ -17,5 +17,5 @@ if __name__ == '__main__':
     db.connect()  # conectar-se ao banco de dados
     db.create_tables([Produto])  # solicitar a criação das tabelas
 
-    prod1 = Produto.create(garrafa = 'Padrão', nomProduto = 'Cachaca Dupipe', descProduto = 'Cachaça envelhecida')
+    prod1 = Produto.create(garrafa = 'Padrão', nomProd = 'Cachaca Dupipe', descProd = 'Cachaça envelhecida')
     print(prod1)

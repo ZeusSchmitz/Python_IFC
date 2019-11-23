@@ -13,8 +13,8 @@ class Pedido(BaseModel):
         return str(self.cliente) + ' Quantidade: ' + self.qtdProd
 
 if __name__ == '__main__':
-#    if os.path.exists(arq):
-#        os.remove(arq)
+    if os.path.exists(arq):
+        os.remove(arq)
 
     db.connect()  # conectar-se ao banco de dados
     db.create_tables([Pedido, Cliente, Produto])  # solicitar a criação das tabelas
