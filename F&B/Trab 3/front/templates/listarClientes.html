@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listagem de Clientes</title>
+</head>
+
+<body>
+    <a href=/listarProdutos>Produtos</a> <br>
+    <a href=/formIncluirCliente>Incluir</a> <br>
+    {% for cliente in listaCliente: %} {{ cliente.nome }} | {{ cliente.cpf }} | {{ cliente.email }}
+    <a href=/excluirCliente?cpf={{ cliente.cpf }}>Excluir</a>
+    <a href=/formAlterarCliente?cpf={{ cliente.cpf }}>Alterar</a><br> 
+    {% endfor %}
+    <br>
+</body>
+
+</html>

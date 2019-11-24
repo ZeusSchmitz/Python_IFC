@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <a href=/listarClientes>Clientes</a> <br>
     <a href=/formIncluirProduto>Incluir</a> <br>
     {% for produto in listaProduto: %} {{ produto.garrafa }} | {{ produto.nomProduto }} | {{ produto.descProduto }}
     <a href=/excluirProduto?id={{ produto.id }}>Excluir</a>
