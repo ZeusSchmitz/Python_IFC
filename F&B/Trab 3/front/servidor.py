@@ -3,6 +3,7 @@ from playhouse.shortcuts import dict_to_model
 import requests
 from cliente import *
 from produto import Produto
+from pedido import Pedido
 
 app=Flask(__name__, static_url_path='',static_folder='templates')
 
@@ -200,5 +201,40 @@ def alterarCliente():
         msg = "Erro: "+resp['details']
         # encaminhar a resposta para uma página de exibição de mensagens
         return render_template('exibirMensagem.html', mensagem=msg)
+
+@app.route('/listarPedidos')
+def listarPedidos():
+    pedidosDados = requests.get('http://localhost:4999/listarPedidos')
+    jsonPedidos = pedidosDados.json()
+    pedidos = []
+    for pedidoJson in jsonPedidos:
+        p = dict_to_model(Pedido, pedidoJson)
+        pedidos.append(p)
+    return render_template('listarPedidos.html', listaPedido = pedidos)
+
+@app.route("/formIncluirPedido")
+def formIncluirPedido():
+    clientesDados = requests.get('http://localhost:4999/listarClientes')
+    jsonClientes = clientesDados.json()
+
+    produtosDados = requests.get('http://localhost:4999/listarProdutos')
+    jsonProdutos = produtosDados.json()
+
+    return render_template('efetuarPedido.html', listarProdutos=jsonProdutos, listarClientes=jsonClientes)
+
+@app.route("/efetuarPedido", methods=['post'])
+def efetuarPedido():
+    cliente = request.form["cliente"]
+    produto = request.form["produto"]
+    qtdProd = request.form["qtdProd"]
+    par = {"cliente":cliente, "produto":produto, "qtdProd":qtdProd}
+    req = requests.post(url='http://localhost:4999/efetuarPedido', json=par)
+
+    resp = req.json()
+    if resp['message'] == 'ok':
+        msg = "Pedido efetuado com sucesso"
+    else:
+        msg = "Erro: "+resp['details']
+    return render_template('exibirMensagem.html', mensagem=msg)
 
 app.run(debug=True)

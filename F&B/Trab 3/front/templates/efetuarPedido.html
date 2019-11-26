@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Realizar pedido</title>
+</head>
+
+<body>
+    <h1>Efetuar pedido</h1>
+    <hr width="30%" align="left">
+        <a href=/formIncluirCliente><button type="button">Incluir Cliente</button></a>
+        <a href=/formIncluirProduto><button type="button">Incluir Produto</button></a>
+    <hr width="30%" align="left">
+    <br>
+    <article>
+        <form action="/efetuarPedido" method="post">
+            <select id="produto" name="produto">
+                <option disabled selected>Produto</option>
+                {% for produto in listarProdutos %}
+                <option value='{{produto.id}}'>{{produto.nomProduto}}</option>
+                {% endfor %}
+            </select>
+            <label>Cliente</label>
+            <select id="cliente" name="cliente">
+                <option disabled selected>Cliente</option>
+                {% for cliente in listarClientes %}
+                <option value='{{cliente.cpf}}'>{{cliente.nome}}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label>Quantidade:</label>
+            <input id="qtd" type="number" name="qtdProd">
+            <br><br>
+            <input type="submit" value="Salvar">
+            <input type="reset" value="Cancelar">
+        </form>
+    </article>
+</body>
+
+</html>

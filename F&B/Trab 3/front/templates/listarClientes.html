@@ -6,8 +6,13 @@
 </head>
 
 <body>
-    <a href=/listarProdutos>Produtos</a> <br>
-    <a href=/formIncluirCliente>Incluir</a> <br>
+    <h1>Listagem de clientes</h1>
+    <hr width="30%" align="left">
+        <a href=/listarPedidos><button type="button">Pedidos</button></a>
+        <a href=/listarProdutos><button type="button">Produtos</button></a>
+        <a href=/formIncluirCliente><button type="button">Incluir Cliente</button></a>
+    <hr width="30%" align="left">
+    <br>
     {% for cliente in listaCliente: %} {{ cliente.nome }} | {{ cliente.cpf }} | {{ cliente.email }}
     <a href=/excluirCliente?cpf={{ cliente.cpf }}>Excluir</a>
     <a href=/formAlterarCliente?cpf={{ cliente.cpf }}>Alterar</a><br> 

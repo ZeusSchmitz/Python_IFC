@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listagem de Pedidos</title>
+</head>
+
+<body>
+    <h1>Listagem de pedidos</h1>
+    <hr width="30%" align="left">
+        <a href=/listarProdutos><button type="button">Produtos</button></a>
+        <a href=/listarClientes><button type="button">Clientes</button></a>
+        <a href=/formIncluirPedido><button type="button">Efetuar Pedido</button></a>
+    <hr width="30%" align="left">
+    <br>
+    {% for pedido in listaPedido: %}
+        Produto: {{ pedido.produto.nomProduto }} <br> 
+        Tipo: {{ pedido.produto.descProduto }} <br>
+        Cliente: {{ pedido.cliente.nome }} <br>
+        Email: {{ pedido.cliente.email }} <br>
+        Quantidade: {{ pedido.qtdProd}} <br><br>
+    {% endfor %}
+    <br>
+</body>
+
+</html>

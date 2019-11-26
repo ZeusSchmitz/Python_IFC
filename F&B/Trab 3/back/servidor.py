@@ -140,4 +140,18 @@ def consultarCliente():
     msg = jsonify({"message":"ok","detail":"ok","data":model_to_dict(cliente)})
     return msg
 
+def listarPedidos():
+    pedidos = list(map(model_to_dict, Pedido.select()))
+    return jsonify(pedidos)
+
+@app.route("/efetuarPedido", methods=['post'])
+def efetuarPedido():
+    msg = jsonify({"message":"ok"})
+    dados = request.get_json(force=True)
+    cliente = dados['cliente']
+    produto = dados['produto']
+    qtdProd = dados['qtdProd']
+    Pedido.create(cliente=cliente, produto=produto, qtdProd=qtdProd)
+    return msg
+    
 app.run(debug=True,port=4999)
