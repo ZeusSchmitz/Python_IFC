@@ -237,4 +237,60 @@ def efetuarPedido():
         msg = "Erro: "+resp['details']
     return render_template('exibirMensagem.html', mensagem=msg)
 
+@app.route("/formAlterarPedido")
+def formAlterarPedido():
+    clientesDados = requests.get('http://localhost:4999/listarClientes')
+    jsonClientes = clientesDados.json()
+
+    produtosDados = requests.get('http://localhost:4999/listarProdutos')
+    jsonProdutos = produtosDados.json()
+
+    # obter id da cliente a ser alterada
+    id = request.args.get("id")
+    # obter a cliente
+    req = requests.get('http://localhost:4999/consultarPedido?id='+id)
+    # obter a resposta
+    resp = req.json()
+    if resp['message'] == 'ok':
+        # converter a resposta para o cliente
+        c = dict_to_model(Pedido, resp['data'])
+        # encaminhar o fluxo para a página de alteração
+        return render_template("alterarPedido.html", pedido=c, listarProdutos=jsonProdutos, listarClientes=jsonClientes)
+    else:
+        msg = "Erro: "+resp['details']
+        # encaminhar a resposta para uma página de exibição de mensagens
+        return render_template('exibirMensagem.html', mensagem=msg)
+
+@app.route("/alterarPedido", methods=['post'])
+def alterarPedido():
+    id = request.form['id']
+    cliente = request.form["cliente"]
+    produto = request.form["produto"]
+    qtdProd = request.form["qtdProd"]
+    par = {'id':id, "cliente":cliente, "produto":produto, "qtdProd":qtdProd}
+    req = requests.post(url='http://localhost:4999/alterarPedido', json=par)
+    resp = req.json()
+
+    if resp['message'] == 'ok':
+        return redirect("/listarPedidos")
+    else:
+        msg = "Erro: "+resp['details']
+        # encaminhar a resposta para uma página de exibição de mensagens
+        return render_template('exibirMensagem.html', mensagem=msg)
+
+@app.route("/excluirPedido")
+def excluirPedido():
+    # obter o nome da cliente a ser excluído
+    id = request.args.get("id")
+    # solicitar a exclusão
+    req = requests.get('http://localhost:4999/excluirPedido?id='+id)
+    # obter a resposta
+    resp = req.json()
+    if resp['message'] == 'ok':
+        return redirect("/listarPedidos")
+    else:
+        msg = "Erro: "+resp['details']
+        # encaminhar a resposta para uma página de exibição de mensagens
+        return render_template('exibirMensagem.html', mensagem=msg)
+    
 app.run(debug=True)

@@ -18,8 +18,10 @@
         Tipo: {{ pedido.produto.descProduto }} <br>
         Cliente: {{ pedido.cliente.nome }} <br>
         Email: {{ pedido.cliente.email }} <br>
-        Quantidade: {{ pedido.qtdProd}} <br><br>
-    {% endfor %}
+        Quantidade: {{ pedido.qtdProd}}
+        <a href=/formAlterarPedido?id={{ pedido.id }}>Alterar</a> 
+        <a href=/excluirPedido?id={{ pedido.id }}>Excluir</a><br><br> 
+        {% endfor %}
     <br>
 </body>
 

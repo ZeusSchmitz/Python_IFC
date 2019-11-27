@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulário de edição de dados do pedido</title>
+</head>
+
+<body>
+    <h1>Edição de dados de pedido</h1>
+    <form action="/alterarPedido" method="post">
+        <select id="produto" name="produto">
+            <option selected>{{pedido.produto.nomProduto}}</option>
+            {% for produto in listarProdutos %}
+            <option value='{{produto.id}}'>{{produto.nomProduto}}</option>
+            {% endfor %}
+        </select>
+        <label>Cliente</label>
+        <select id="cliente" name="cliente">
+            <option selected>{{pedido.cliente.nome}}</option>
+            {% for cliente in listarClientes %}
+            <option value='{{cliente.cpf}}'>{{cliente.nome}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label>Quantidade:</label>
+        <input value='{{pedido.qtdProd}}' id="qtd" type="number" name="qtdProd">
+        <br><br>
+        <input type=hidden name=id value="{{pedido.id}}">
+        <input type="submit" value="Salvar">
+        <input type="reset" value="Cancelar">
+    </form>
+</body>
+
+</html>

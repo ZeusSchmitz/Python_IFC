@@ -10,7 +10,7 @@ app=Flask(__name__)
 
 @app.route('/')
 def inicio():
-    return 'Servidor de api backend<a href=/listarClientes>listar</a>'
+    return 'Servidor de api backend<a href=/listarPedidos>listar</a>'
 
 @app.route('/listarProdutos')
 def listarProduto():
@@ -154,4 +154,43 @@ def efetuarPedido():
     Pedido.create(cliente=cliente, produto=produto, qtdProd=qtdProd)
     return msg
     
+@app.route("/alterarPedido", methods=['post'])
+def alterarPedido():
+    msg = jsonify({"message":"ok"})
+    dados = request.get_json(force=True)
+    id = dados['id']
+    cliente = dados['cliente']
+    produto = dados['produto']
+    qtdProd = dados['qtdProd']
+    pedido = Pedido.get_by_id(id)
+    # alterar os dados da cliente
+    pedido.cliente = cliente
+    pedido.produto = produto
+    pedido.qtdProd = qtdProd
+    # atualizar os dados
+    pedido.save()
+    return msg
+    
+@app.route("/consultarPedido")
+def consultarPedido():
+    # preparar mensagem de retorno padrão (sucesso)
+    msg = jsonify({"message":"error","detail":"iniciando procedimentos"})
+    # obter o id
+    id = request.args.get("id")
+    # obter a pessoa original
+    pedido = Pedido.get_by_id(id)
+    # preparar retorno
+    msg = jsonify({"message":"ok","detail":"ok","data":model_to_dict(pedido)})
+    return msg
+
+@app.route("/excluirPedido")
+def excluirPedido():
+  # preparar mensagem de retorno padrão (sucesso)
+  msg = jsonify({"message":"ok"})
+  # obter o id
+  id = request.args.get("id")
+  # exclui
+  Pedido.delete_by_id(id)
+  return msg
+
 app.run(debug=True,port=4999)
