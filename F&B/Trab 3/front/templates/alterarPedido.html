@@ -9,16 +9,24 @@
     <h1>Edição de dados de pedido</h1>
     <form action="/alterarPedido" method="post">
         <select id="produto" name="produto">
-            <option selected>{{pedido.produto.nomProduto}}</option>
             {% for produto in listarProdutos %}
-            <option value='{{produto.id}}'>{{produto.nomProduto}}</option>
+            <option 
+                {% if produto.id == pedido.produto.id %}
+                    selected
+                {%endif%}
+                value='{{produto.id}}'>{{produto.nomProduto}}
+            </option>
             {% endfor %}
         </select>
         <label>Cliente</label>
         <select id="cliente" name="cliente">
-            <option selected>{{pedido.cliente.nome}}</option>
             {% for cliente in listarClientes %}
-            <option value='{{cliente.cpf}}'>{{cliente.nome}}</option>
+            <option 
+                {% if cliente.cpf == pedido.cliente.cpf %} 
+                    selected
+                {%endif%}
+                value='{{cliente.cpf}}'>{{cliente.nome}}
+            </option>
             {% endfor %}
         </select>
         <br><br>

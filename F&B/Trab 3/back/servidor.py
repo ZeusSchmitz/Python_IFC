@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, redirect
+from flask import Flask, jsonify, render_template, request, redirect, json
 from playhouse.shortcuts import model_to_dict
 from cliente import *
 from produto import *
@@ -74,11 +74,6 @@ def consultarProduto():
     msg = jsonify({"message":"ok","detail":"ok","data":model_to_dict(prod)})
     return msg
 
-@app.route('/listarPedidos')
-def listarPedidos():
-    pedidos = list(map(model_to_dict, Pedido.select()))
-    return jsonify(pedidos)
-
 @app.route('/listarClientes')
 def listarClientes():
     clientes = list(map(model_to_dict, Cliente.select()))
@@ -140,6 +135,7 @@ def consultarCliente():
     msg = jsonify({"message":"ok","detail":"ok","data":model_to_dict(cliente)})
     return msg
 
+@app.route('/listarPedidos')
 def listarPedidos():
     pedidos = list(map(model_to_dict, Pedido.select()))
     return jsonify(pedidos)

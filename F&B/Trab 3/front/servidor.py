@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, render_template, request, redirect
+from flask import Flask, jsonify, render_template, request, redirect, json
 from playhouse.shortcuts import dict_to_model
 import requests
-from cliente import *
+from cliente import Cliente
 from produto import Produto
 from pedido import Pedido
 
