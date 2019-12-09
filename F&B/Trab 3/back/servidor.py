@@ -10,12 +10,16 @@ app=Flask(__name__)
 
 @app.route('/')
 def inicio():
-    return 'Servidor de api backend<a href=/listarPedidos>listar</a>'
+    return 'Servidor de api backend<a href=/listarProdutos>listar</a>'
 
 @app.route('/listarProdutos')
 def listarProduto():
     produtos = list(map(model_to_dict, Produto.select()))
-    return jsonify(produtos)
+    response = jsonify({"lista": produtos})
+    # informa que outras origens podem acessar os dados desde servidor/serviço
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    # retorno!
+    return response
 
 @app.route("/incluirProduto", methods=['post'])
 def incluirProduto():
@@ -29,6 +33,8 @@ def incluirProduto():
     descProd = dados['descProd']
     # criar a nova produto
     Produto.create(garrafa=garrafa, nomProduto=nomProd, descProduto=descProd)
+    # informa que outras origens podem acessar os dados desde servidor/serviço
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return msg
     
 @app.route("/excluirProduto")
@@ -39,6 +45,8 @@ def excluirProduto():
   id = request.args.get("id")
   # exclui
   Produto.delete_by_id(id)
+  # informa que outras origens podem acessar os dados desde servidor/serviço
+  msg.headers.add('Access-Control-Allow-Origin', '*')
   return msg
 
 @app.route("/alterarProduto", methods=['post'])

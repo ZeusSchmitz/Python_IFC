@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listagem de Produtos</title>
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" id=estilo_tabela href="css/tabela3.css">
+</head>
+
+<body>
+    <h1>Cadastro de produtos</h1>
+    <button id="btn_listar_produtos">Listar</button>
+    <button id="btn_form_incluir_produto">Incluir</button>
+    <hr>
+
+    <!-- form de inclusão a seguir: inicialmente oculto-->
+    <div id=html_form_incluir_produto>
+        <fieldset>
+            <legend>Novo produto</legend>
+            <div>
+                <label for="garrafa">Garrafa:</label> <input type=text id=garrafa>
+            </div>
+            <div>
+                <label for="nomProd">Nome:</label> <input type=text id=nomProd>
+            </div>
+            <div>
+                <label for="descProd">Descrição:</label> <textarea id=descProd></textarea>
+            </div>
+            <div id="div_btn_incluir_produto">
+                <button id="btn_incluir_produto">Incluir</button>
+                <img id=success src=img/success.gif />
+                <img id=error src=img/error.gif />
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="produto" class="rTable">
+        <!-- inserir as produtos aqui -->
+    </div>
+
+</body>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/meuscript.js"></script>
+
+</html>
